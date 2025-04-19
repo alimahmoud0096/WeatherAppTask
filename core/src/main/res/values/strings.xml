@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- Temperature format -->
+    <string name="format_temperature">
+        <xliff:g id="temp">%1.0f</xliff:g>\u00B0
+    </string>
+    <string name="format_high_low_temperature">
+        <xliff:g id="high">High: %1.0f</xliff:g>\u00B0
+        <xliff:g id="low">Low: %1.0f</xliff:g>\u00B0
+    </string>
+
+
+    <string name="wind_label">Wind</string>
+    <string name="visibility_label">Visibility</string>
+    <string name="pressure_label">Pressure</string>
+    <string name="humidity_label">Humidity</string>
+
+    <!-- Data Errors -->
+    <string name="data_error_local_disk_full">Disk full</string>
+    <string name="data_error_local_unknown">Unknown local error</string>
+    <string name="data_error_remote_request_timeout">Request timeout</string>
+    <string name="data_error_remote_too_many_requests">Too many requests</string>
+    <string name="data_error_remote_no_internet">No internet connection</string>
+    <string name="data_error_remote_server_error">Server error</string>
+    <string name="data_error_remote_serialization_error">Serialization error</string>
+    <string name="data_error_remote_unknown_error">Unknown remote error</string>
+
+    <!-- UI Texts -->
+    <string name="loading">Loading...</string>
+
+    <!--    Permissions-->
+    <string name="location_rationale_title">Permission Request</string>
+    <string name="location_rationale_description">Hey there, we need location permission to show you relevant / accurate weather information.</string>
+    <string name="location_rationale_button_grant">Grant Permission</string>
+    <string name="location_rationale_button_deny">Deny Permission</string>
+    <string name="home">Home\n</string>
+    <string name="search">Search</string>
+    <string name="settings">Settings</string>
+    <string name="placeholder_search">Search...</string>
+
+</resources>
