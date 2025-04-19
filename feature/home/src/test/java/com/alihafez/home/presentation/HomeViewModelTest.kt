@@ -75,6 +75,7 @@ class HomeViewModelTest {
                 firstItem.weatherUi,
                 WeatherUi()
             )
+
             assertEquals(
                 firstItem.forecast,
                 listOf(fakeForecastModelItem.asHomeForecastUi())

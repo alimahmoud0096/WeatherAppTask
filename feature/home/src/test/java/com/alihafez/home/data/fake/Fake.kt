@@ -119,37 +119,7 @@ val fakeForecastDto = ForecastDto(
             sys = ForecastSys(pod = "d"),
             dt_txt = "2025-02-10 12:00:00"
         ),
-        ForecastItem(
-            dt = 1638327600,
-            main = Main(
-                feels_like = 14.0,
-                grnd_level = 1013,
-                humidity = 80,
-                pressure = 1016,
-                sea_level = 1019,
-                temp = 17.0,
-                temp_max = 19.0,
-                temp_min = 15.0
-            ),
-            visibility = 8000,
-            weather = listOf(
-                Weather(
-                    description = "few clouds",
-                    icon = "02d",
-                    id = 801,
-                    main = "Clouds"
-                )
-            ),
-            wind = Wind(
-                deg = 340,
-                gust = 4.5,
-                speed = 3.2
-            ),
-            clouds = Clouds(all = 40),
-            pop = 0.1,
-            sys = ForecastSys(pod = "d"),
-            dt_txt = "2025-02-11 15:00:00"
-        )
+
     )
 )
 
