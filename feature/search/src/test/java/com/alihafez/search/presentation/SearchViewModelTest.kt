@@ -1,5 +1,6 @@
 package com.alihafez.search.presentation
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import app.cash.turbine.test
 import com.alihafez.search.domain.repo.SearchRepo
 import org.junit.Assert.*
@@ -12,7 +13,11 @@ import org.mockito.kotlin.whenever
 import com.alihafez.core.domain.*
 import com.alihafez.search.MainDispatcherRule
 import com.alihafez.search.fake.fakeWeatherModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
+import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 import org.junit.Test
@@ -28,7 +33,13 @@ class SearchViewModelTest {
     private lateinit var SUT: SearchViewModel
 
     @get:Rule
+    var instantExecutorRule = InstantTaskExecutorRule()
+    @get:Rule
     val mainDispatcherRule = MainDispatcherRule()
+
+    @ExperimentalCoroutinesApi
+    @get:Rule
+    val mainCoroutineRule = MainDispatcherRule()
 
     @Before
     fun setup() {
@@ -48,8 +59,9 @@ class SearchViewModelTest {
         }
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
-    fun save_Location_updated_in_cashed_list() = runTest {
+    fun save_Location_updated_in_cashed_list() = runTest(UnconfinedTestDispatcher()) {
         getWeatherCity()
         saveLocation()
 
@@ -57,8 +69,10 @@ class SearchViewModelTest {
         SUT.onSearchIconClick()
         SUT.onSavedLocationClick()
 
+
         SUT.uiState.test {
             val result = awaitItem()
+
             assertEquals(result.savedLocations.size, 1)
         }
     }

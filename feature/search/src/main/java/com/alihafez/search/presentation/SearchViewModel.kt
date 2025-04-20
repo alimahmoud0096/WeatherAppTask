@@ -41,6 +41,7 @@ class SearchViewModel @Inject constructor(private val searchRepo: SearchRepo) : 
             .onStart { getCachedList() }
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), SearchUiState())
 
+
     init {
         observeOnCityNameChanged()
     }
@@ -65,10 +66,8 @@ class SearchViewModel @Inject constructor(private val searchRepo: SearchRepo) : 
     }
 
     fun onCityNameChange(cityName: String) {
-        Log.d("TAG", "onCityNameChange:${cityName} ")
         _uiState.update { it.copy(cityName = cityName) }
     }
-
 
 
     fun onSearchIconClick() {
@@ -84,8 +83,12 @@ class SearchViewModel @Inject constructor(private val searchRepo: SearchRepo) : 
     fun onSavedLocationClick() {
         onDismiss()
         viewModelScope.launch {
-            searchResult?.let { searchRepo.saveLocationToDatabase(it) }
+            searchResult?.let {
+                searchRepo.saveLocationToDatabase(it)
+                getCachedList()
+            }
         }
+
     }
 
     fun onDismiss() {
@@ -99,7 +102,6 @@ class SearchViewModel @Inject constructor(private val searchRepo: SearchRepo) : 
             .distinctUntilChanged()
             .flowOn(Dispatchers.IO)
             .onEach {
-                Log.d("TAG", "observeOnCityNameChanged:${it} ")
 
                 if (it.isNotEmpty()) {
                     getWeatherByCityName(it)
